@@ -1,7 +1,7 @@
 import logging
 
 
-def setup_logger(logger_name, log_file, level=logging.INFO):
+def setup_logger(logger_name, log_file, level=logging.DEBUG):
     l = logging.getLogger(logger_name)
     formatter = logging.Formatter('[ %(asctime)s ] [ %(levelname)-4s ] %(message)s')
     fileHandler = logging.FileHandler(log_file, mode='w')
