@@ -1,5 +1,5 @@
-from config.db_config import get_local_connection as get_connection
-from config.loggingConfig import controller_log as logger
+from src.config.db_config import get_local_connection as get_connection
+from src.config.loggingConfig import controller_log as logger
 
 
 def cursor_handler(decorated):

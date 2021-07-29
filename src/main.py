@@ -1,7 +1,7 @@
 # routes need to be touched by import once to proc the app import/setup
-from route import caliber, self_comparison
+from src.route import caliber, self_comparison
+from src.config.flask_config import app
 
-from config.flask_config import app
 from dotenv import dotenv_values
 
 
