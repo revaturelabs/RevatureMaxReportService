@@ -1,6 +1,6 @@
 from flask import make_response, request
-from config.flask_config import app
-from util.fetch import fetch_json
+from src.config.flask_config import app
+from src.util.fetch import fetch_json
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
