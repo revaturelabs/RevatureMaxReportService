@@ -1,8 +1,5 @@
-
-from config.flask_config import app
-from dotenv import dotenv_values
-
+from src.config.flask_config import app
+from src.route import caliber
 
 if __name__ == "__main__":
-    dotenv_values("../.env")
     app.run()

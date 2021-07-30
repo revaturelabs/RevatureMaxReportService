@@ -1,8 +1,13 @@
 from flask import make_response, request
-from config.flask_config import app
-from util.fetch import fetch_json
+from src.config.flask_config import app
+from src.util.fetch import fetch_json
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
+
+
+@app.route("/")
+def hello_world():
+    return "Hello World!"
 
 
 @app.route("/grades/assessment/<int:assessment_id>", methods=["GET"])
@@ -86,3 +91,10 @@ def getSpiderGraphDataForTraineeAndBatch(batch_id, associate_email):
     # localhost:5000/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
     url = f"{URL_BASE}evaluation/grades/reports/{batch_id}/spider/{associate_email}"
     return {"batch_grades": fetch_json(url)}
+
+
+@app.route("/qa/notes/trainee/<associate_id>")
+def getQANotesForTrainee(associate_id):
+    # localhost:5000/qa/notes/trainee/SF-2128
+    url = f"{URL_BASE}qa/notes/trainee/{associate_id}"
+    return {"quality_audits": fetch_json(url)}
