@@ -1,6 +1,7 @@
 from flask import make_response, request
 from src.config.flask_config import app
 from src.util.fetch import fetch_json
+from src.service import qa_service
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
@@ -97,4 +98,5 @@ def getSpiderGraphDataForTraineeAndBatch(batch_id, associate_email):
 def getQANotesForTrainee(associate_id):
     # localhost:5000/qa/notes/trainee/SF-2128
     url = f"{URL_BASE}qa/notes/trainee/{associate_id}"
-    return {"quality_audits": fetch_json(url)}
+    qa_json = fetch_json(url)
+    return qa_service.parseTraineeJson(qa_json)
