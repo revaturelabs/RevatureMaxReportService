@@ -9,5 +9,5 @@ def fetch_json(url):
         with urlopen(url) as fi:
             return loads(fi.read())
     except Exception as e:
-        logger.error(e)
+        logger.error("Failed to acquire resource %s\n\t%s", url, e)
         return {}
