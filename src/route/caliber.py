@@ -97,9 +97,13 @@ def getSpiderGraphDataForTraineeAndBatch(batch_id, associate_email):
 @app.route("/qa/notes/trainee/<associate_id>", methods=["GET"])
 def getQANotesForTrainee(associate_id):
     # localhost:5000/qa/notes/trainee/SF-2128
-    url = f"{URL_BASE}qa/notes/trainee/{associate_id}"
-    qa_json = fetch_json(url)
-    return qa_service.parseTraineeJson(qa_json)
+    url_ind = f"{URL_BASE}qa/notes/trainee/{associate_id}"
+    qa_json_ind = fetch_json(url_ind)
+    batch_id = qa_service.getbatchID(qa_json_ind)
+    url_batch = f"{URL_BASE}qa/notes/batch/{batch_id}"
+    qa_json_batch = fetch_json(url_batch)
+
+    return qa_service.parseTraineeJson(qa_json_ind, qa_json_batch)
 
 
 @app.route("/qa/notes/batch/<batch_id>", methods=["GET"])
@@ -112,6 +116,8 @@ def getQCNotesForBatchGroup(batch_id):
 @app.route("/qa/notes/individual/<batch_id>", methods=["GET"])
 def getQCNoteForBatchIndividual(batch_id):
     # localhost:5000/qa/notes/individual/TR-1131
-    url = f"{URL_BASE}qa/notes/individual/{batch_id}"
+    url_ind = f"{URL_BASE}qa/notes/individual/{batch_id}"
+
     qa_json = fetch_json(url)
     return qa_service.parseBatchIndividualJson(qa_json)
+
