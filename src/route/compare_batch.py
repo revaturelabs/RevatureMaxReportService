@@ -117,8 +117,8 @@ def compareBatchToOtherBatch(batch_id, other_batch_id):
             chart_data[batch_id].append(round(weekly_sum / weekly_num, 2))
         data[batch_id].append(round(avg_original, 2))
         chart_data[batch_id].append(round(avg_original, 2))
-        print(other_batch_id)
-        other_batch = fetch_json(other_batch_id)
+        other_batch_url = URL_BASE + "training/batch/" + other_batch_id
+        other_batch = fetch_json(other_batch_url)
         prev_batch_date = datetime.strptime(other_batch.get("startDate"), "%Y-%m-%d").date()
         if original_date > prev_batch_date:
             data[other_batch_id] = []
@@ -132,7 +132,7 @@ def compareBatchToOtherBatch(batch_id, other_batch_id):
                 num += 1
             avg_prev = sum / num
 
-            for week in range(1, 11):
+            for week in range(1, 12):
                 weekly_avg_url = URL_BASE + "evaluation/grades/reports/{}/overall/{}".format(other_batch_id, week)
                 week_of_batch = fetch_json(weekly_avg_url)
                 if week_of_batch[0].get("average") == 0:
