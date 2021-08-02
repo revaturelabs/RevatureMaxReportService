@@ -1,11 +1,11 @@
-from util.fetch import fetch_json
+from src.util.fetch import fetch_json
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
 
 def score_report_by_week(batch_id, associate_email):
-    results = individual_score_by_week_formatted(batch_id, associate_email)
-    batch_scores = batch_averages_by_week_formatted(batch_id)
+    results = individual_score_by_week(batch_id, associate_email)
+    batch_scores = batch_averages_by_week(batch_id)
 
     results["data"]["Batch Averages"] = batch_scores["data"]["Batch Averages"]
     results["chartData"]["Batch Average Score"] = batch_scores["chartData"]["Batch Average Score"]
@@ -13,7 +13,7 @@ def score_report_by_week(batch_id, associate_email):
     return results
 
 
-def batch_averages_by_week_formatted(batch_id):
+def batch_averages_by_week(batch_id):
     # https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/
     url = f"{URL_BASE}evaluation/grades/reports/{batch_id}/spider"
     batch_average_by_week = fetch_json(url)
@@ -27,7 +27,7 @@ def batch_averages_by_week_formatted(batch_id):
     return results
 
 
-def individual_score_by_week_formatted(batch_id, associate_email):
+def individual_score_by_week(batch_id, associate_email):
     # https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
     url = f"{URL_BASE}evaluation/grades/reports/{batch_id}/spider/{associate_email}"
     individual_score_by_week = fetch_json(url)
@@ -45,8 +45,8 @@ def individual_score_by_week_formatted(batch_id, associate_email):
     return results
 
 
-def individual_vs_batch_score_formatted(batch_id, associate_email):
-    result, categories = individual_vs_batch_score(batch_id, associate_email)
+def individual_vs_batch_score(batch_id, associate_email):
+    result, categories = fetch_individual_vs_batch_score(batch_id, associate_email)
 
     values = {"data": {}, "chartData": {}}
     for category in categories:
@@ -56,7 +56,7 @@ def individual_vs_batch_score_formatted(batch_id, associate_email):
     return values
 
 
-def individual_vs_batch_score(batch_id, associate_email):
+def fetch_individual_vs_batch_score(batch_id, associate_email):
     # https://caliber2-mock.revaturelabs.com:443/mock/training/associate/mock1.associatee5c1c02d-531e-404c-9a86-082107ff12bc%40mock.com/batch
     url = f"{URL_BASE}qa/notes/batch/{batch_id}"
     notes_by_week_for_batch = fetch_json(url)

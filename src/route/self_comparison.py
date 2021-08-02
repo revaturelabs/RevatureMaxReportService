@@ -2,7 +2,7 @@
 from src.config.loggingConfig import controller_log as logger
 from src.config.flask_config import app
 from src.util.fetch import fetch_json
-from src.util.self_comparison import individual_vs_batch_score_formatted, score_report_by_week
+from src.util.self_comparison import individual_vs_batch_score, score_report_by_week
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
@@ -40,7 +40,7 @@ def get_trainee_grades_compared_to_batch_on_week(associate_email, week):
 @app.route("/reports/<batch_id>/<associate_email>/weekly", methods=["GET"])
 def get_trainee_grades_compared_to_batch_all_weeks(batch_id, associate_email):
     # localhost:5000/reports/TR-1190/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com/weekly
-    return individual_vs_batch_score_formatted(batch_id, associate_email)
+    return individual_vs_batch_score(batch_id, associate_email)
 
 
 @app.route("/reports/<batch_id>/spider/<associate_email>", methods=["GET"])
