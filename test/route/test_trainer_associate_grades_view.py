@@ -8,7 +8,6 @@ import src.util.fetch as fetch
 
 
 class getTraineeDataTest(unittest.TestCase):
-    # m_doa.get_manager_data = Mock(return_value=[(3, 'manager', 'password')])
     # mocking the fetch_json to return mock data that we can use to verify
     # that our function is working
     def setUp(self):
