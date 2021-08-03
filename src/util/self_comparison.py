@@ -55,6 +55,7 @@ def fetch_individual_vs_batch_score(batch_id, associate_email):
     result = {}
     categories = set()
     for week in weeks:
+        # https://caliber2-mock.revaturelabs.com:443/mock/evaluation/grades/reports/individual/mock1.associatee5c1c02d-531e-404c-9a86-082107ff12bc%40mock.com/1
         url = f"{URL_BASE}evaluation/grades/reports/individual/{associate_email}/{week}"
         r1 = fetch_json(url)
         for key in r1.keys():

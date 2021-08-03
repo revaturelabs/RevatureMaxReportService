@@ -1,4 +1,5 @@
 from os import environ
+from pathlib import Path
 import psycopg2
 
 
@@ -9,7 +10,7 @@ def get_connection():
         port=environ["PORT"],
         user=environ["DATABASE_USER"],
         password=environ["DATABASE_PASS"],
-        database=environ["DATABASE"])
+        database=environ["DATABASE_NAME"])
 
 
 def get_local_connection():
@@ -18,4 +19,11 @@ def get_local_connection():
         port=environ["PORT"],
         user=environ["TEST_USER"],
         password=environ["TEST_PASS"],
-        database=environ["DATABASE"])
+        database=environ["DATABASE_NAME"])
+
+
+def reset_database(sql: Path):
+    with open(sql) as fi:
+        with get_local_connection() as conn:
+            with conn.cursor() as cursor:
+                cursor.execute(fi.read())
