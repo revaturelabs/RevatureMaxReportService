@@ -19,13 +19,3 @@ def get_local_connection():
         user=environ["TEST_USER"],
         password=environ["TEST_PASS"],
         database=environ["DATABASE"])
-
-
-def reset_db(conn):
-    """Ensure the db has the appropriate tables.
-        conn -- the psycopg2 connection
-    """
-    with get_connection() as conn:
-        with conn.cursor() as cursor:
-            pass
-        conn.commit()
