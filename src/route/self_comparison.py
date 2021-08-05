@@ -3,7 +3,6 @@ from src.config.flask_config import app
 from src.util.self_comparison import (
     individual_vs_batch_score,
     individual_score_by_week,
-    batch_averages_by_week,
 )
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"

@@ -23,7 +23,7 @@ def individual_score_by_week(batch_id, associate_email):
         "chartData": {"Associate Score": []},
     }
     for row in individual_scores:
-        results["chartData"]["Associate Score"].append(row["score"])
+        # results["chartData"]["Associate Score"].append(row["score"])
         results["data"]["Assessment Type"].append(row["assessmentType"])
         results["data"]["My Score"].append(row["score"])
         results["data"][" Week #"].append(row["week"])
@@ -32,16 +32,53 @@ def individual_score_by_week(batch_id, associate_email):
     batch_scores = batch_averages_by_week(batch_id)
 
     results["data"]["Batch Averages"] = batch_scores["data"]["Batch Averages"]
-    results["chartData"]["Batch Average Score"] = batch_scores["chartData"][
-        "Batch Average Score"
-    ]
+    # results["chartData"]["Batch Average Score"] = batch_scores["chartData"][
+    #     "Batch Average Score"
+    # ]
+
+    results["chartData"] = individual_score_chart_data(results["data"])
 
     return results
 
 
+def individual_score_chart_data(data):
+    # (Per Week: summation x * weight) / sum_weight
+    weighted_values_associate = []
+    weighted_values_batch = []
+    weights = []
+    current_week = None
+    result = {"Batch Average Score": [], "Associate Score": []}
+    for week, weight, my_score, batch_score in zip(
+        data[" Week #"], data["Weight"], data["My Score"], data["Batch Averages"]
+    ):
+        # it's a new week
+        if current_week is None or week != current_week:
+            if current_week is not None:
+                result["Associate Score"].append(
+                    sum(weighted_values_associate) / sum(weights)
+                )
+                result["Batch Average Score"].append(
+                    sum(weighted_values_batch) / sum(weights)
+                )
+                weighted_values_associate.clear()
+                weighted_values_batch.clear()
+                weights.clear()
+            current_week = week
+        else:
+            weighted_values_associate.append(weight * my_score)
+            weighted_values_batch.append(weight * batch_score)
+            weights.append(weight)
+
+    if len(weighted_values_associate) > 0:  # handle the last iteration
+        result["Associate Score"].append(sum(weighted_values_associate) / sum(weights))
+        result["Batch Average Score"].append(sum(weighted_values_batch) / sum(weights))
+
+    return result
+
+
 def individual_vs_batch_score(batch_id, associate_email):
     result, categories = fetch_individual_vs_batch_score(batch_id, associate_email)
-
+    # this endpoint no longer returns table data, remove the data key
     # values = {"data": {}, "chartData": {}}
     values = {"chartData": {}}
     for category in categories:
