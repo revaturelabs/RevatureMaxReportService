@@ -1,40 +1,38 @@
-DROP TABLE IF EXISTS report_batch, report_employee, report_evaluation, report_on_assessment CASCADE;
+DROP TABLE IF EXISTS report_batch, report_qc_note, report_employee, report_evaluation, report_on_assessment CASCADE;
 DROP TABLE IF EXISTS associate_portfolio, employee_portfolio, associate, employee CASCADE;
 
 create table associate(
-    salesforceId varchar(10) primary key not null, 
-    firstname varchar(20) not null,
-    lastname varchar(20) not null,
-    email varchar(40) UNIQUE,
-    pswrd varchar(40)
+  email varchar(75) UNIQUE,
+  salesforceId varchar(10) primary key not null, 
+  firstname varchar(20) not null,
+  lastname varchar(20) not null,
+  batch_id VARCHAR(10) not null
 );
 
 create table associate_portfolio(
-    bio text,
-    favorite_technologies text,
-    preference varchar(15),
-    salesforceId varchar(10) not null,
-    foreign key (salesforceId)
-    references associate(salesforceId)
-
+  bio text,
+  favorite_technologies text,
+  preference varchar(15),
+  salesforceId varchar(10) not null,
+  foreign key (salesforceId)
+  references associate(salesforceId)
 );
 
 create table employee (
-    salesforceId varchar(10) primary key not null, 
-    firstname varchar(20) not null,
-    lastname varchar(20) not null,
-    email varchar(40) UNIQUE,
-    pswrd varchar(40)
+  salesforceId varchar(10) primary key not null, 
+  firstname varchar(20) not null,
+  lastname varchar(20) not null,
+  email varchar(40) UNIQUE,
+  pswrd varchar(40)
 );
 
 create table employee_portfolio(
-    bio text,
-    technology text,
-    trainer_location varchar(25),
-    salesforceId varchar(10) not null,
-    foreign key (salesforceId)
-    references associate(salesforceId)
-    
+  bio text,
+  technology text,
+  trainer_location varchar(25),
+  salesforceId varchar(10) not null,
+  foreign key (salesforceId)
+  references associate(salesforceId)
 );
 
 CREATE TABLE report_batch (

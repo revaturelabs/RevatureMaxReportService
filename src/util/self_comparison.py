@@ -7,10 +7,7 @@ def batch_averages_by_week(batch_id):
     # https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/
     url = f"{URL_BASE}evaluation/grades/reports/{batch_id}/spider"
     batch_average_by_week = fetch_json(url)
-    results = {
-        "data": {"Batch Averages": []},
-        "chartData": {"Batch Average Score": []}
-    }
+    results = {"data": {"Batch Averages": []}, "chartData": {"Batch Average Score": []}}
     for avg in batch_average_by_week:
         results["data"]["Batch Averages"].append(avg["score"])
         results["chartData"]["Batch Average Score"].append(avg["score"])
@@ -20,17 +17,24 @@ def batch_averages_by_week(batch_id):
 def individual_score_by_week(batch_id, associate_email):
     # https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
     url = f"{URL_BASE}evaluation/grades/reports/{batch_id}/spider/{associate_email}"
-    individual_score_by_week = fetch_json(url)
+    individual_scores = fetch_json(url)
     results = {
         "data": {"Assessment Type": [], "My Score": [], " Week #": [], "Weight": []},
-        "chartData": {"Associate Score": []}
+        "chartData": {"Associate Score": []},
     }
-    for row in individual_score_by_week:
+    for row in individual_scores:
         results["chartData"]["Associate Score"].append(row["score"])
         results["data"]["Assessment Type"].append(row["assessmentType"])
         results["data"]["My Score"].append(row["score"])
         results["data"][" Week #"].append(row["week"])
         results["data"]["Weight"].append(row["weight"])
+
+    batch_scores = batch_averages_by_week(batch_id)
+
+    results["data"]["Batch Averages"] = batch_scores["data"]["Batch Averages"]
+    results["chartData"]["Batch Average Score"] = batch_scores["chartData"][
+        "Batch Average Score"
+    ]
 
     return results
 
@@ -38,10 +42,11 @@ def individual_score_by_week(batch_id, associate_email):
 def individual_vs_batch_score(batch_id, associate_email):
     result, categories = fetch_individual_vs_batch_score(batch_id, associate_email)
 
-    values = {"data": {}, "chartData": {}}
+    # values = {"data": {}, "chartData": {}}
+    values = {"chartData": {}}
     for category in categories:
-        values["data"] = table_data(result, category)
-        values["chartData"] = chart_data(result, category)
+        # values["data"] = {**values["data"], **table_data(result, category)}
+        values["chartData"] = {**values["chartData"], **chart_data(result, category)}
 
     return values
 
@@ -105,7 +110,10 @@ def chart_data(dataBlock, category):
         )
 
     dat_iter = iter(report[f"Associate {category} Score"])
-    next(dat_iter)
+    try:
+        next(dat_iter)
+    except StopIteration:
+        return report
     index_from = 0
     index_to = 1
 
