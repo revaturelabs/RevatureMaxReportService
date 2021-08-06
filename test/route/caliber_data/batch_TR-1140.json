@@ -1,0 +1,13 @@
+ {
+  "id": 69,
+  "batchId": "TR-1140",
+  "name": "Mock Batch 69",
+  "startDate": "2021-05-14",
+  "endDate": "2021-07-23",
+  "skill": "PEGA",
+  "location": "West Virginia",
+  "type": "Corporate",
+  "goodGrade": 70,
+  "passingGrade": 80,
+  "currentWeek": 11
+}

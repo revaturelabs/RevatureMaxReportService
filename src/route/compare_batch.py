@@ -3,7 +3,7 @@ from urllib.error import HTTPError
 from config.flask_config import app
 from util.fetch import fetch_json
 from datetime import datetime
-from src.services.compare_batch_services import *
+from src.service.compare_batch_services import *
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
