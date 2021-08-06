@@ -1,21 +1,53 @@
-DROP IF EXISTS report_batch, report_employee CASCADE;
+DROP TABLE IF EXISTS report_batch, report_qc_note, report_employee, report_evaluation, report_on_assessment CASCADE;
+DROP TABLE IF EXISTS associate_portfolio, employee_portfolio, associate, employee CASCADE;
 
--- CREATE TABLE report_role (
---   rr_id BIGSERIAL PRIMARY KEY,
---   role_name VARCHAR,
--- );
+create table associate(
+  email varchar(75) UNIQUE,
+  salesforceId varchar(10) primary key not null, 
+  firstname varchar(20) not null,
+  lastname varchar(20) not null,
+  batch_id VARCHAR(10) not null
+);
 
-CREATE TABLE report_employee (
-  re_id BIGSERIAL PRIMARY KEY,    
-  -- rr_role_id BIGSERIAL
-  --   REFERENCES report_role(rr_id),
-  rb_id BIGSERIAL
-    REFERENCES report_batch(rb_id),           
-  email VARCHAR UNIQUE NOT NULL,  -- email
-  first_name VARCHAR NOT NULL,    -- firstName
-  last_name VARCHAR NOT NULL,     -- lastName
-  associate_id VARCHAR,           -- salesforceId / associateId
-  -- flag VARCHAR,                   -- flag
+create table associate_portfolio(
+  bio text,
+  favorite_technologies text,
+  preference varchar(15),
+  salesforceId varchar(10) not null,
+  foreign key (salesforceId)
+  references associate(salesforceId)
+);
+
+create table employee (
+  salesforceId varchar(10) primary key not null, 
+  firstname varchar(20) not null,
+  lastname varchar(20) not null,
+  email varchar(40) UNIQUE,
+  pswrd varchar(40)
+);
+
+create table employee_portfolio(
+  bio text,
+  technology text,
+  trainer_location varchar(25),
+  salesforceId varchar(10) not null,
+  foreign key (salesforceId)
+  references associate(salesforceId)
+);
+
+CREATE TABLE report_batch (
+  rb_id BIGSERIAL PRIMARY KEY,
+  batch_id VARCHAR UNIQUE,       -- batchId
+  rb_name VARCHAR,               -- name
+  skill VARCHAR,                 -- skill
+  rb_location VARCHAR,           -- location
+  rb_type VARCHAR,               -- type
+  good_grade SERIAL,             -- goodGrade
+  passing_grade SERIAL,          -- passingGrade
+  -- for some reason, I've seen test data with negative week numbers
+  current_week INTEGER,          -- currentWeek
+  rb_start_date VARCHAR,         -- startDate
+  rb_end_date VARCHAR            -- endDate
 );
 
 CREATE TABLE report_evaluation (
@@ -23,7 +55,7 @@ CREATE TABLE report_evaluation (
   date_received DATE,             -- dateReceived
   score DECIMAL,                  -- score
   re_id BIGSERIAL,                -- assessmentId note that this is different than the gradeId
-  trainee_id VARCHAR,             -- traineeId /mock/qa/notes/trainee/SF-2681
+  trainee_id VARCHAR              -- traineeId /mock/qa/notes/trainee/SF-2681
 );
 
 --https://caliber2-mock.revaturelabs.com:443/mock/qa/notes/individual/TR-1190
@@ -37,20 +69,21 @@ CREATE TABLE report_qc_note (
   associate_type VARCHAR,         -- "type": "QC_TRAINEE",
   technical_status VARCHAR,       -- "technicalStatus": "Superstar",
   created_on DATE,                -- "createdOn": null,
-  last_updated DATE,              -- "lastUpdated": null
-)
+  last_updated DATE               -- "lastUpdated": null
+);
 
-CREATE TABLE report_batch (
-  rb_id BIGSERIAL PRIMARY KEY,
-  batch_id VARCHAR,              -- batchId
-  rb_name VARCHAR,               -- name
-  skill VARCHAR,                 -- skill
-  rb_location VARCHAR,           -- location
-  rb_type VARCHAR,               -- type
-  good_grade SERIAL,             -- goodGrade
-  passing_grade SERIAL,          -- passingGrade
-  -- for some reason, I've seen test data with negative week numbers
-  current_week INTEGER           -- currentWeek
-  rb_start_date VARCHAR,         -- startDate
-  rb_end_date VARCHAR,           -- endDate
+-- https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
+CREATE TABLE report_on_assessment (
+  grade_id        BIGSERIAL,    -- 
+  batch_id        VARCHAR
+    REFERENCES report_batch(batch_id),
+  associate_id    VARCHAR(40)
+    REFERENCES associate(email),
+  assessment_type  VARCHAR(10), -- assessmentType
+  score           INTEGER  
+    CHECK (score >= 0),           -- score
+  week            INTEGER
+    CHECK (week > 0),             -- week
+  grade_weight    INTEGER
+    CHECK (grade_weight >= 0)     -- weight
 );
