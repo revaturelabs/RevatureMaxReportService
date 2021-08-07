@@ -1,11 +1,15 @@
 from urllib.error import HTTPError
 
-from config.flask_config import app
-from util.fetch import fetch_json
+from src.config.flask_config import app
+from src.util.fetch import fetch_json
 from datetime import datetime
 from src.service.compare_batch_services import *
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
+
+@app.route('/remove-this-later')
+def ok():
+    return 'ok'
 
 @app.route("/batch/<batch_id>/compare")
 def compareBatchToPastBatches(batch_id):
