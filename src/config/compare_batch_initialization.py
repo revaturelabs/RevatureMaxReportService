@@ -6,9 +6,9 @@ URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
 @cursor_handler
 def initialize_batch(batch, cursor):
-    cursor.execute('DELETE FROM test_report_batch_two WHERE id = %s', (batch['id'],))
+    cursor.execute('DELETE FROM report_batch WHERE id = %s', (batch['id'],))
     cursor.execute(
-        """INSERT INTO test_report_batch_two
+        """INSERT INTO report_batch
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
         (batch['id'], batch['batchId'], batch['name'], batch['startDate'], batch['endDate'], batch['skill'], batch['location'], batch['type'], batch['goodGrade'],
          batch['passingGrade'], batch['currentWeek'])
@@ -16,14 +16,14 @@ def initialize_batch(batch, cursor):
 
 @cursor_handler
 def initialize_batch_grades(trainee, batch_id, cursor):
-    cursor.execute('DELETE FROM test_batch_grades_two WHERE batch_id = %s AND traineename = %s', (str(batch_id), trainee['traineeName']))
-    cursor.execute("""INSERT INTO test_batch_grades_two
+    cursor.execute('DELETE FROM batch_grades WHERE batch_id = %s AND traineename = %s', (str(batch_id), trainee['traineeName']))
+    cursor.execute("""INSERT INTO batch_grades
         VALUES (%s, %s, %s)""", (trainee['traineeName'], trainee['average'], str(batch_id)))
 
 @cursor_handler
 def initialize_report_on_assessment(report, cursor):
-    cursor.execute('DELETE FROM test_report_on_assessment WHERE traineeid = %s AND week = %s AND assessmenttype = %s', (report['traineeId'], report['week'], report['assessmentType']))
-    cursor.execute("""INSERT INTO test_report_on_assessment VALUES(DEFAULT, %s, NULL, %s, %s, %s, %s)""",
+    cursor.execute('DELETE FROM report_on_assessment WHERE traineeid = %s AND week = %s AND assessmenttype = %s', (report['traineeId'], report['week'], report['assessmentType']))
+    cursor.execute("""INSERT INTO report_on_assessment VALUES(DEFAULT, %s, NULL, %s, %s, %s, %s)""",
                    (report['traineeId'], report['assessmentType'], str(report['score']), str(report['week']), str(int(report['weight']))))
 
 @cursor_handler
