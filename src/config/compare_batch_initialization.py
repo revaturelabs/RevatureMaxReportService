@@ -6,7 +6,7 @@ URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
 @cursor_handler
 def initialize_batch(batch, cursor):
-    cursor.execute('DELETE FROM report_batch WHERE id = %s', (batch['id'],))
+    cursor.execute('DELETE FROM report_batch WHERE rb_id = %s', (batch['id'],))
     cursor.execute(
         """INSERT INTO report_batch
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
@@ -22,13 +22,13 @@ def initialize_batch_grades(trainee, batch_id, cursor):
 
 @cursor_handler
 def initialize_report_on_assessment(report, cursor):
-    cursor.execute('DELETE FROM report_on_assessment WHERE traineeid = %s AND week = %s AND assessmenttype = %s', (report['traineeId'], report['week'], report['assessmentType']))
+    cursor.execute('DELETE FROM report_on_assessment WHERE associate_id = %s AND week = %s AND assessment_type = %s', (report['traineeId'], report['week'], report['assessmentType']))
     cursor.execute("""INSERT INTO report_on_assessment VALUES(DEFAULT, %s, NULL, %s, %s, %s, %s)""",
                    (report['traineeId'], report['assessmentType'], str(report['score']), str(report['week']), str(int(report['weight']))))
 
 @cursor_handler
 def get_batch_ids(cursor):
-    cursor.execute('SELECT batchid FROM report_batch ORDER BY batchid')
+    cursor.execute('SELECT batch_id FROM report_batch ORDER BY batchid')
     return cursor.fetchall()
 
 
