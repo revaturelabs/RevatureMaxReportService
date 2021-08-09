@@ -1,3 +1,5 @@
+import datetime
+
 from src.dao import compare_batch_dao as dao
 from src.config.db_config import get_local_connection
 from test.data.test_compare_batch_data import batches, batch_grades, spider_weeks
@@ -7,16 +9,17 @@ class TestCompareBatchDAO(TestCase):
     def setUp(self):
         with get_local_connection() as conn:
             with conn.cursor() as cur:
+                cur.execute('DELETE FROM report_on_assessment CASCADE')
                 cur.execute("""
-                    TRUNCATE report_batch,
-                    batch_grades,
-                    report_on_assessment
-                    CASCADE
+                    DELETE FROM report_batch CASCADE
                 """)
+                cur.execute('DELETE FROM batch_grades CASCADE')
+
                 for batch in batches:
                     cur.execute("""
                         INSERT INTO report_batch VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                    """, batch.to_tuple())
+                    """, (batch.rb_id, batch.batch_id, batch.rb_name, batch.rb_start_date, batch.rb_end_date, batch.skill,
+                                batch.rb_location, batch.rb_type, batch.good_grade, batch.passing_grade, batch.current_week))
 
                 for grade in batch_grades:
                     cur.execute("""INSERT INTO batch_grades
@@ -33,7 +36,7 @@ class TestCompareBatchDAO(TestCase):
         skill, date = dao.get_batch_by_id("TR-1145", productionDB=False)
         with get_local_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("""SELECT skill, startdate FROM report_batch WHERE batchid = 'TR-1145'""")
+                cur.execute("""SELECT skill, rb_start_date FROM report_batch WHERE batch_id = 'TR-1145'""")
                 actual_skill, actual_date = cur.fetchone()
         self.assertEqual(skill, actual_skill)
         self.assertEqual(date, actual_date)
@@ -42,7 +45,7 @@ class TestCompareBatchDAO(TestCase):
         test_batch_ids = dao.get_batches_with_same_skill("PEGA", "2021-05-28", productionDB=False)
         with get_local_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("""SELECT batchid FROM report_batch WHERE skill = 'PEGA' AND '2021-05-28' > startdate""")
+                cur.execute("""SELECT batch_id FROM report_batch WHERE skill = 'PEGA' AND '2021-05-28' > rb_start_date""")
                 actual_batch_ids = cur.fetchall()
         self.assertCountEqual(actual_batch_ids, test_batch_ids)
 
@@ -52,22 +55,23 @@ class TestCompareBatchDAO(TestCase):
             with conn.cursor() as cur:
                 cur.execute("""SELECT SUM(average)/ COUNT(average) FROM batch_grades WHERE batch_id = 'TR-1140'""")
                 average, = cur.fetchone()
-        self.assertEqual(test_average, average)
+        self.assertEqual(test_average[0], average)
 
     def test_batch_weekly_avg(self):
         test_weekly_avg = dao.batch_weekly_avg("TR-1140", 1, productionDB=False)
         with get_local_connection() as conn:
             with conn.cursor() as cur:
                 cur.execute("""SELECT SUM(score)/COUNT(score) FROM report_on_assessment 
-                WHERE traineeid = 'TR-1140' AND week = 1""")
+                WHERE batch_id = 'TR-1140' AND week = 1""")
                 average, = cur.fetchone()
-        self.assertEqual(test_weekly_avg, average)
+        self.assertEqual(test_weekly_avg[0], average)
 
     def tearDown(self):
         with get_local_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("""TRUNCATE report_batch,
-                    batch_grades,
-                    report_on_assessment
-                    CASCADE""")
+                cur.execute('DELETE FROM report_on_assessment CASCADE')
+                cur.execute("""
+                                    DELETE FROM report_batch CASCADE
+                                """)
+                cur.execute('DELETE FROM batch_grades CASCADE')
                 conn.commit()

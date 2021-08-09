@@ -7,10 +7,6 @@ from src.service.compare_batch_services import *
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 
-@app.route('/remove-this-later')
-def ok():
-    return 'ok'
-
 @app.route("/batch/<batch_id>/compare")
 def compareBatchToPastBatches(batch_id):
     # localhost:5000/batch/TR-1145/compare

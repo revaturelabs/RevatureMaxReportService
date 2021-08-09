@@ -1,5 +1,4 @@
 from src.config.db_config import get_connection, get_local_connection
-from datetime import datetime
 
 def get_batch_by_id(batch_id, productionDB=True):
     try:
@@ -47,7 +46,7 @@ def batch_weekly_avg(batch_id, week, productionDB=True):
         else:
             conn = get_local_connection()
         cur = conn.cursor()
-        SQL = """SELECT SUM(score)/COUNT(score) FROM report_on_assessment WHERE associate_id = %s AND week = %s"""
+        SQL = """SELECT SUM(score)/COUNT(score) FROM report_on_assessment WHERE batch_id = %s AND week = %s"""
         cur.execute(SQL, (batch_id, week))
         return cur.fetchone()
     finally:
