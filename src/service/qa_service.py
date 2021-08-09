@@ -1,40 +1,43 @@
-def parseTraineeJson(json_ind, json_batch):
+from src.dao import qc_dao as dao
+
+
+# def parseTraineeJson(json_ind, json_batch):
+#     row_dict = {}
+#     return_dict = {}
+#
+#     week = 1
+#
+#     for x in json_ind:
+#         for y in json_batch:
+#             if int(y['week']) is week:
+#                 row_dict = {'type': 'QC', 'score': x['technicalStatus'], 'notes': x['content'], 'average': y['technicalStatus'], 'week': f"Week {x['week']}"}
+#
+#         return_dict[x['week']] = row_dict
+#         week = week + 1
+#
+#     return return_dict
+#
+#
+# def getbatchID(json):
+#     return json[0]['batchId']
+#
+
+def get_qc_info(associate_id):
     return_dict = {}
 
-    row = 1
-    batch_list = 0
+    result = dao.select_qc_info_by_associate_id(associate_id)
+    for x in result:
+        content = x[0]
+        week = x[1]
+        tech_status = x[2]
+        batch_id = x[3]
+        batch_average = dao.select_qc_batch_average_by_week(batch_id, week)[0]
 
-    for x in json_ind:
+        row_dict = {'type': 'QC', 'score': tech_status, 'notes': content, 'average': batch_average,
+                    'week': f"Week {week}"}
 
-        row_dict = {'Type': 'QC', 'Score': x['technicalStatus'], 'Notes': x['content'], 'Average': json_batch[batch_list]['technicalStatus']}
-
-        return_dict[x['week']] = row_dict
-        row = row + 1
-        batch_list = batch_list + 1
+        return_dict[week] = row_dict
 
     return return_dict
 
 
-def parseBatchJson(json):
-    return_dict = {}
-
-    for x in json:
-        return_dict[x['week']] = x
-
-    return return_dict
-
-
-def getbatchID(json):
-    return json[0]['batchId']
-
-
-def parseBatchIndividualJson(json):
-    return_dict = {}
-    row = 1
-    for x in json:
-        row_dict = {'associateId': x['associateId'], 'batchID': x['batchId'], 'content': x['content'],
-                    'technicalStatus': x['technicalStatus'], 'week': x['week']}
-        return_dict[row] = row_dict
-        row = row + 1
-
-    return return_dict
