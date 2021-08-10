@@ -21,5 +21,5 @@ def get_trainee_grades_compared_to_batch_all_weeks(batch_id, associate_email):
 
 @app.route("/associate/<batch_id>/spider/<associate_email>", methods=["GET"])
 def spider_on_batch(batch_id, associate_email):
-    # localhost:5000/associate/EX-B/spider/ex0002
+    # localhost:5000/associate/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
     return {"data": assessment_service.select_batch_averages(batch_id, associate_email)}

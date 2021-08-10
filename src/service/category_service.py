@@ -132,11 +132,15 @@ def select_categorical_averages_by_email_weekly(associate_email):
     values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
-
+    week = 1
     for score_by_week in sorted(values_by_category, key=lambda res: res[2]):
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
             result[f"Associate {category} Score"] = []
+            week = 1
+        while week < score_by_week[2]:
+            week += 1
+            result[f"Associate {category} Score"].append(0)
         result[f"Associate {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result
@@ -150,11 +154,15 @@ def select_batch_averages_weekly(batch_id):
     values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
-
+    week = 1
     for score_by_week in sorted(values_by_category, key=lambda res: res[2]):
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
             result[f"Average {category} Score"] = []
+            week = 1
+        while week < score_by_week[2]:
+            week += 1
+            result[f"Average {category} Score"].append(0)
         result[f"Average {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result

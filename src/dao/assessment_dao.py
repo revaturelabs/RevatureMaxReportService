@@ -124,7 +124,7 @@ def select_weekly_categories_by_batch(batch_id, cursor):
     cursor.execute(
         """SELECT SUM(score * grade_weight) / SUM(grade_weight), assessment_type, week
             FROM report_on_assessment
-            WHERE batch_id LIKE 'EX-B02'
+            WHERE batch_id LIKE %s
             GROUP BY week, assessment_type
             ORDER BY week""",
         (batch_id,),
