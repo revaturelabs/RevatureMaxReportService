@@ -10,4 +10,4 @@ def batch_total_avg(batch_id, productionDB=True):
     return float(compare_batch_dao.batch_total_avg(batch_id, productionDB)[0])
 
 def batch_weekly_avg(batch_id, week, productionDB=True):
-    return compare_batch_dao.batch_weekly_avg(batch_id, week, productionDB)[0]
+    return float(compare_batch_dao.batch_weekly_avg(batch_id, week, productionDB)[0])
