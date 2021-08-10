@@ -72,6 +72,20 @@ CREATE TABLE report_qc_note (
   last_updated DATE               -- "lastUpdated": null
 );
 
+--https://caliber2-mock.revaturelabs.com:443/mock/qa/notes/batch/TR-1190
+CREATE TABLE report_qc_batch_note (
+  note_id BIGSERIAL PRIMARY KEY,  -- "noteId": 3942,
+  content VARCHAR,                -- "content": "This is a Qc batch note on week 9",
+  week INTEGER,                   -- "week": 6,
+  batch_id VARCHAR,               -- "batchId": "TR-1190",
+  associate_id VARCHAR,           -- "associateId": "SF-2681",
+  employee_id VARCHAR,            -- "employeeId": "QC-User",
+  associate_type VARCHAR,         -- "type": "QC_TRAINEE",
+  technical_status VARCHAR,       -- "technicalStatus": "Superstar",
+  created_on DATE,                -- "createdOn": null,
+  last_updated DATE               -- "lastUpdated": null
+);
+
 -- https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
 CREATE TABLE report_on_assessment (
   grade_id        BIGSERIAL,    -- 
