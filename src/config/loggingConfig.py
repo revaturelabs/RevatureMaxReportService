@@ -18,7 +18,5 @@ controller_log = logging.getLogger('controller_log')
 
 setup_logger('service_log', r'../log/service_log.log')
 service_log = logging.getLogger('service_log')
-
 setup_logger('dao_log', r'../log/dao_log.log')
 dao_log = logging.getLogger('dao_log')
-
