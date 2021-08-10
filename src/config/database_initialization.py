@@ -1,5 +1,5 @@
-from src.dao.dao_helper import cursor_handler
-from src.util.fetch import fetch_json
+from dao.dao_helper import cursor_handler
+from util.fetch import fetch_json
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
 

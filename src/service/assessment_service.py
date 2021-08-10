@@ -1,5 +1,5 @@
-from src.dao import assessment_dao
-from src.model.assessment import Assessment
+from dao import assessment_dao
+from model.assessment import Assessment
 
 
 def create_assessment(assessment: Assessment):

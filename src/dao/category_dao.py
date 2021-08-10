@@ -1,4 +1,4 @@
-from src.dao.dao_helper import cursor_handler
+from dao.dao_helper import cursor_handler
 
 
 @cursor_handler
@@ -110,7 +110,6 @@ def select_by_batch_category(batch_id, category_type, cursor):
 
 @cursor_handler
 def select_batch_averages_weekly(batch_id, cursor):
-<<<<<<< HEAD
     cursor.execute(
         """SELECT SUM(score * grade_weight) / SUM(grade_weight), category, week
         FROM report_on_category
@@ -135,8 +134,6 @@ def select_categorical_averages_by_email_weekly(email, cursor):
 
 @cursor_handler
 def select_batch_average_weekly(batch_id, cursor):
-=======
->>>>>>> 6429afd (implemented route->service->dao refactor)
     cursor.execute(
         """SELECT SUM(score * grade_weight) / SUM(grade_weight), category, week
         FROM report_on_category

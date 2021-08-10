@@ -1,4 +1,4 @@
-from src.dao.dao_helper import cursor_handler
+from dao.dao_helper import cursor_handler
 
 
 @cursor_handler

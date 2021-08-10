@@ -1,5 +1,5 @@
-from src.config.flask_config import app
-from src.service import category_service
+from config.flask_config import app
+from service import category_service
 
 
 @app.route("/trainer/<batch_id>")
