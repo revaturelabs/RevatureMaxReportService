@@ -1,5 +1,5 @@
-from src.config.flask_config import app
-from src.service import qc_service as service
+from config.flask_config import app
+from service import qc_service as service
 
 
 @app.route("/qa/notes/trainee/<associate_id>", methods=["GET"])

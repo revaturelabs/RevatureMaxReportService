@@ -1,6 +1,6 @@
 # from flask import make_response, request
-from src.config.flask_config import app
-from src.util.self_comparison import (
+from config.flask_config import app
+from util.self_comparison import (
     individual_vs_batch_score,
     individual_score_by_week,
 )

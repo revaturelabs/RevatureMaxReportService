@@ -1,4 +1,4 @@
-from src.dao import qc_dao as dao
+from dao import qc_dao as dao
 
 
 def get_qc_info_trainee(associate_id):

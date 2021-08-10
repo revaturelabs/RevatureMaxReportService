@@ -1,4 +1,4 @@
-from src.dao import compare_batch_dao
+from dao import compare_batch_dao
 
 def get_batch_by_id(batch_id, productionDB=True):
     return compare_batch_dao.get_batch_by_id(batch_id, productionDB)

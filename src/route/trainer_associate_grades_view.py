@@ -1,8 +1,8 @@
-from flask import make_response, request
-from src.config.flask_config import app
-from src.util.fetch import fetch_json
+from config.flask_config import app
+from util.fetch import fetch_json
 
 URL_BASE = "https://caliber2-mock.revaturelabs.com:443/mock/"
+
 
 @app.route("/trainer/individual/grades/<associate_email>", methods=["GET"])
 def getTraineeData(associate_email):

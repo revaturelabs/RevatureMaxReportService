@@ -1,4 +1,4 @@
-from src.config.db_config import get_connection, get_local_connection
+from config.db_config import get_connection, get_local_connection
 
 def get_batch_by_id(batch_id, productionDB=True):
     try:
