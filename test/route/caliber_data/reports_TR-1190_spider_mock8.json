@@ -1,0 +1,156 @@
+[
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "SQL",
+        "score": 54.32065673307939,
+        "week": 1,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "NoSQL",
+        "score": 56.653779376636855,
+        "week": 1,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "TypeScript",
+        "score": 44.27988586642525,
+        "week": 2,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "TypeScript",
+        "score": 49.89768638783558,
+        "week": 2,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Quarkus",
+        "score": 54.01425443996083,
+        "week": 2,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Spring Cloud",
+        "score": 56.345275315371424,
+        "week": 3,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Python",
+        "score": 38.30175950310447,
+        "week": 3,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "React",
+        "score": 46.72847327725454,
+        "week": 3,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": ".NET",
+        "score": 47.611724040725015,
+        "week": 4,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Git",
+        "score": 46.5158106955615,
+        "week": 4,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "REST",
+        "score": 45.61614571918141,
+        "week": 4,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "NoSQL",
+        "score": 42.74334665861997,
+        "week": 5,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "JDBC",
+        "score": 49.65272934870286,
+        "week": 5,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "gRPC",
+        "score": 42.5095047137954,
+        "week": 5,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "gRPC",
+        "score": 54.9535870552063,
+        "week": 5,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Spring Cloud",
+        "score": 44.37169161709872,
+        "week": 6,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "SOAP",
+        "score": 44.77213324200023,
+        "week": 6,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "GCP",
+        "score": 51.56804016638886,
+        "week": 6,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "TypeScript",
+        "score": 55.70296439257535,
+        "week": 7,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "DevOps",
+        "score": 50.90018314123154,
+        "week": 7,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "SOAP",
+        "score": 65.51627896048807,
+        "week": 7,
+        "weight": 100.0
+    },
+    {
+        "traineeId": "restOfBatch",
+        "assessmentType": "Unix",
+        "score": 54.932157104665585,
+        "week": 7,
+        "weight": 100.0
+    }
+]
