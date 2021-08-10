@@ -51,12 +51,12 @@ def select_batch_averages(batch_id, associate_email):
 
     for value in assessment_dao.select_weekly_categories_by_email(associate_email):
         # score, assessment_type, week, grade_weight
-        result["My Score"].append(value[0])
+        result["My Score"].append(f"{float(value[0]):.2f}")
         result["Assessment Type"].append(value[1])
         result[" Week #"].append(value[2])
         result["Weight"].append(value[3])
 
     result["Batch Averages"] = [
-        x[0] for x in assessment_dao.select_weekly_categories_by_batch(batch_id)
+        f"{float(x[0]):.2f}" for x in assessment_dao.select_weekly_categories_by_batch(batch_id)
     ]
     return result

@@ -125,10 +125,11 @@ def select_all_by_batch_averages(batch_id):
 
 
 def select_categorical_averages_by_email_weekly(associate_email):
-    values_by_category = sorted(
-        filter(None, category_dao.select_categorical_averages_by_email_weekly(associate_email)),
-        key=lambda x: x[1],
-    )
+    values_by_category = category_dao.select_categorical_averages_by_email_weekly(associate_email)
+    if values_by_category is None or len(values_by_category) == 0:
+        return {}
+    values_by_category = filter(None, values_by_category)
+    values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
 
@@ -136,16 +137,17 @@ def select_categorical_averages_by_email_weekly(associate_email):
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
             result[f"Associate {category} Score"] = []
-        result[f"Associate {category} Score"].append(score_by_week[0])
+        result[f"Associate {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result
 
 
 def select_batch_averages_weekly(batch_id):
-    values_by_category = sorted(
-        filter(None, category_dao.select_batch_averages_weekly(batch_id)),
-        key=lambda x: x[1],
-    )
+    values_by_category = category_dao.select_batch_averages_weekly(batch_id)
+    if values_by_category is None or len(values_by_category) == 0:
+        return {}
+    values_by_category = filter(None, values_by_category)
+    values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
 
@@ -153,7 +155,7 @@ def select_batch_averages_weekly(batch_id):
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
             result[f"Average {category} Score"] = []
-        result[f"Average {category} Score"].append(score_by_week[0])
+        result[f"Average {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result
 
