@@ -140,7 +140,7 @@ def select_categorical_averages_by_email_weekly(associate_email):
             week = 1
         while week < score_by_week[2]:
             week += 1
-            result[f"Associate {category} Score"].append(0)
+            result[f"Associate {category} Score"].append(f'{0.00:.2f}')
         result[f"Associate {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result
@@ -162,7 +162,7 @@ def select_batch_averages_weekly(batch_id):
             week = 1
         while week < score_by_week[2]:
             week += 1
-            result[f"Average {category} Score"].append(0)
+            result[f"Average {category} Score"].append(f'{0.00:.2f}')
         result[f"Average {category} Score"].append(f"{float(score_by_week[0]):.2f}")
 
     return result
