@@ -1,5 +1,6 @@
 from src.dao.dao_helper import cursor_handler
 
+
 @cursor_handler
 def select_qc_info_by_associate_id(associate_id, cursor):
     cursor.execute(
@@ -7,6 +8,7 @@ def select_qc_info_by_associate_id(associate_id, cursor):
         [associate_id]
     )
     return cursor.fetchall()
+
 
 @cursor_handler
 def select_qc_batch_average_by_week(batch_id, week, cursor):
