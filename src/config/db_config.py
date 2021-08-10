@@ -22,7 +22,7 @@ def get_local_connection():
         database=environ["DATABASE_NAME"])
 
 
-def reset_database(sql: Path):
+def execute_sql(sql: Path):
     with open(sql) as fi:
         with get_local_connection() as conn:
             with conn.cursor() as cursor:

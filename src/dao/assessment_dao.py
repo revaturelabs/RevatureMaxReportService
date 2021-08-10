@@ -1,25 +1,10 @@
 from src.dao.dao_helper import cursor_handler
 
-# -- https://caliber2-mock.revaturelabs.com/mock/evaluation/grades/reports/TR-1190/spider/mock8.associatef4c8d0c5-ecaf-4127-a459-7bf3617118a6@mock.com
-# CREATE TABLE report_on_assessment (
-#   grade_id        BIGSERIAL,    --
-#   batch_id        VARCHAR,
-#     REFERENCES report_batch(batch_id),
-#   associate_id    VARCHAR(40)
-#     REFERENCES associate(email),
-#   assessment_type  VARCHAR(10), -- assessmentType
-#   score           INTEGER
-#     CHECK score >= 0,           -- score
-#   week            INTEGER
-#     CHECK week > 0,             -- week
-#   grade_weight    INTEGER
-#     CHECK grade_weight >= 0,    -- weight
-# );
-#
-
 
 @cursor_handler
-def create_existing(grade_id, batch_id, email, assessment_type, score, week, grade_weight, cursor):
+def create_existing(
+    grade_id, batch_id, email, assessment_type, score, week, grade_weight, cursor
+):
     cursor.execute(
         """INSERT INTO report_on_assessment
         VALUES (%s, %s, %s, %s, %s, %s, %s)""",
@@ -92,5 +77,56 @@ def select_by_batch_max_grade(batch_id, max_grade, cursor):
         """SELECT * FROM report_on_assessment
         WHERE batch_id LIKE %s AND score < %s""",
         (batch_id, max_grade),
+    )
+    return cursor.fetchall()
+
+
+@cursor_handler
+def select_assessment_averages_by_email(associate_email, cursor):
+    cursor.execute(
+        """SELECT SUM(score * grade_weight) / SUM(grade_weight), assessment_type, week
+            FROM report_on_assessment
+            WHERE associate_id LIKE %s
+            GROUP BY assessment_type, week
+            ORDER BY week""",
+        (associate_email,),
+    )
+    return cursor.fetchall()
+
+
+@cursor_handler
+def select_batch_averages(batch_id, cursor):
+    cursor.execute(
+        """SELECT SUM(score * grade_weight) / SUM(grade_weight), assessment_type, week
+            FROM report_on_assessment
+            WHERE batch_id LIKE %s
+            GROUP BY assessment_type, week
+            ORDER BY week""",
+        (batch_id,),
+    )
+    return cursor.fetchall()
+
+
+@cursor_handler
+def select_weekly_categories_by_email(email, cursor):
+    cursor.execute(
+        """SELECT score, assessment_type, week, grade_weight
+            FROM report_on_assessment
+            WHERE associate_id LIKE %s
+            ORDER BY week""",
+        (email,),
+    )
+    return cursor.fetchall()
+
+
+@cursor_handler
+def select_weekly_categories_by_batch(batch_id, cursor):
+    cursor.execute(
+        """SELECT SUM(score * grade_weight) / SUM(grade_weight), assessment_type, week
+            FROM report_on_assessment
+            WHERE batch_id LIKE 'EX-B02'
+            GROUP BY week, assessment_type
+            ORDER BY week""",
+        (batch_id,),
     )
     return cursor.fetchall()

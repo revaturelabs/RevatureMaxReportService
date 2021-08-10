@@ -3,7 +3,9 @@ from config.loggingConfig import controller_log as logger
 
 
 def cursor_handler(decorated):
-    """Injects a database cursor into the function parameters"""
+    """Injects a database cursor into the function parameters
+    note that the original function is still callable
+    without supplying the `cursor`"""
     def f(*args, **kwargs):
         logger.name = decorated.__module__
         conn = None

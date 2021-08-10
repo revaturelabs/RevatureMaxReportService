@@ -101,3 +101,23 @@ CREATE TABLE report_on_assessment (
   grade_weight    INTEGER
     CHECK (grade_weight >= 0)     -- weight
 );
+
+-- The difference between this table and the one above
+--    is on how scores are aggregated,
+-- This table uses categories like Verbal, Exam, etc
+--    while the assessment table references specific
+--    Tech Stacks like NoSQL, TypeScript, etc.
+CREATE TABLE report_on_category (
+  grade_id        BIGSERIAL,      -- 
+  batch_id        VARCHAR
+    REFERENCES report_batch(batch_id),
+  email           VARCHAR(40)
+    REFERENCES associate(email),
+  category        VARCHAR(10),    -- assessmentType
+  score           INTEGER  
+    CHECK (score >= 0),           -- score
+  week            INTEGER
+    CHECK (week > 0),             -- week
+  grade_weight    INTEGER
+    CHECK (grade_weight >= 0)     -- weight
+);

@@ -7,4 +7,4 @@ from dotenv import dotenv_values
 
 if __name__ == "__main__":
     dotenv_values("../.env")
-    app.run()
+    app.run(host="0.0.0.0")
