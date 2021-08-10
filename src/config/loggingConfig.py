@@ -13,6 +13,7 @@ def setup_logger(logger_name, log_file, level=logging.DEBUG):
     l.addHandler(streamHandler)
 
 
+
 setup_logger('controller_log', r'../log/controller_log.log')
 controller_log = logging.getLogger('controller_log')
 
