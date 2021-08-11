@@ -66,9 +66,9 @@ class TestCategoryDAO(TestCase):
         for ex in examples:
             dao.create_existing(*ex.to_tuple())
 
-    def test_select_by_email_assessment_week(self):
+    def test_select_by_email_category_week(self):
         # def test_select_email_assessment_week(email, assessment_type, week, cursor):
-        self.assertEqual(len(dao.select_by_email_assessment_week("ex0001@example.com", "Quiz", 1)), 1)
+        self.assertEqual(len(dao.select_by_email_category_week("ex0001@example.com", "Quiz", 1)), 1)
 
     def test_select_by_email_category(self):
         # def test_select_by_email_assessment(email, assessment_type, cursor):

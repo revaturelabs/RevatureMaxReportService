@@ -65,31 +65,6 @@ class TestCategoryService(TestCase):
         self.assertGreater(len(result), 3)
 
     @mock.patch("src.dao.category_dao.select_by_batch_category")
-    @mock.patch("src.dao.category_dao.select_all_categories")
-    def test_select_by_batch_averages(self, m_categories, m_select):
-        # def select_by_batch_averages(batch_id):
-        m_categories.return_value = [("Verbal",), ("Exam",), ("Project",), ("Quiz",)]
-        m_select.side_effect = [
-            [
-                (0, "EX-B01", "ex0001@example.com", "Verbal", 90, 1, 100),
-                (0, "EX-B01", "ex0001@example.com", "Verbal", 90, 1, 100),
-            ],
-            [
-                (0, "EX-B01", "ex0001@example.com", "Exam", 80, 1, 100),
-                (0, "EX-B01", "ex0001@example.com", "Exam", 80, 1, 100),
-            ],
-            [
-                (0, "EX-B01", "ex0001@example.com", "Project", 70, 1, 100),
-                (0, "EX-B01", "ex0001@example.com", "Project", 70, 1, 100),
-            ],
-            [
-                (0, "EX-B01", "ex0001@example.com", "Quiz", 60, 1, 100),
-                (0, "EX-B01", "ex0001@example.com", "Quiz", 60, 1, 100),
-            ],
-        ]
-        service.select_by_batch_averages("")
-
-    @mock.patch("src.dao.category_dao.select_by_batch_category")
     def test_select_by_batch_category(self, m_select):
         # def select_by_batch_category(batch_id, category_type):
         m_select.return_value = [
