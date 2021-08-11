@@ -91,10 +91,10 @@ CREATE TABLE report_on_assessment (
   grade_id        BIGSERIAL,    -- 
   batch_id        VARCHAR
     REFERENCES report_batch(batch_id),
-  associate_id    VARCHAR(40)
+  associate_id    VARCHAR(75)
     REFERENCES associate(email),
-  assessment_type  VARCHAR(10), -- assessmentType
-  score           INTEGER  
+  assessment_type  VARCHAR(20), -- assessmentType
+  score           DECIMAL  
     CHECK (score >= 0),           -- score
   week            INTEGER
     CHECK (week > 0),             -- week
@@ -111,10 +111,10 @@ CREATE TABLE report_on_category (
   grade_id        BIGSERIAL,      -- 
   batch_id        VARCHAR
     REFERENCES report_batch(batch_id),
-  email           VARCHAR(40)
+  email           VARCHAR(75)
     REFERENCES associate(email),
-  category        VARCHAR(10),    -- assessmentType
-  score           INTEGER  
+  category        VARCHAR(20),    -- assessmentType
+  score           DECIMAL  
     CHECK (score >= 0),           -- score
   week            INTEGER
     CHECK (week > 0),             -- week

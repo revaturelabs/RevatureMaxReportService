@@ -49,7 +49,6 @@ def select_all_by_batch_averages(batch_id):
     categories = select_all_categories()
     associate_scores = {}
     for cat in categories:
-        cat = str.lower(cat)
         result_set = select_by_batch_category(batch_id, cat)
         for result in result_set:
             if result.email not in associate_scores.keys():
@@ -63,63 +62,63 @@ def select_all_by_batch_averages(batch_id):
 
     result = {
         "Associate Name": [],
-        "Quiz Score": [],
+        "Presentation Score": [],
         "Exam Score": [],
         "Project Score": [],
         "Verbal Score": [],
         "Email": [],
     }
     weighted_score_sum = {
-        "quiz": 0,
-        "exam": 0,
-        "project": 0,
-        "verbal": 0,
-        "quiz_weight": 1,
-        "exam_weight": 1,
-        "project_weight": 1,
-        "verbal_weight": 1,
+        "Presentation": 0,
+        "Exam": 0,
+        "Project": 0,
+        "Verbal": 0,
+        "Presentation_weight": 1,
+        "Exam_weight": 1,
+        "Project_weight": 1,
+        "Verbal_weight": 1,
     }
     # Associate running total
     for associate_email in associate_scores.keys():
         associate_score = associate_scores[associate_email]
         result["Associate Name"].append(
-            associate_dao.select_name_by_email(associate_email)
+            associate_dao.select_name_by_email(associate_email)[0]
         )
-        result["Quiz Score"].append(
-            associate_score.get("quiz", 0) / associate_score.get("quiz_weight", 1)
+        result["Presentation Score"].append(
+            float(associate_score.get("Presentation", 0) / associate_score.get("Presentation_weight", 1))
         )
-        weighted_score_sum["quiz"] += associate_score.get("quiz", 0)
-        weighted_score_sum["quiz_weight"] += associate_score.get("quiz_weight", 0)
+        weighted_score_sum["Presentation"] += associate_score.get("Presentation", 0)
+        weighted_score_sum["Presentation_weight"] += associate_score.get("Presentation_weight", 0)
         result["Exam Score"].append(
-            associate_score.get("exam", 0) / associate_score.get("exam_weight", 1)
+            float(associate_score.get("Exam", 0) / associate_score.get("Exam_weight", 1))
         )
-        weighted_score_sum["exam"] += associate_score.get("exam", 0)
-        weighted_score_sum["exam_weight"] += associate_score.get("exam_weight", 0)
+        weighted_score_sum["Exam"] += associate_score.get("Exam", 0)
+        weighted_score_sum["Exam_weight"] += associate_score.get("Exam_weight", 0)
         result["Project Score"].append(
-            associate_score.get("project", 0) / associate_score.get("project_weight", 1)
+            float(associate_score.get("Project", 0) / associate_score.get("Project_weight", 1))
         )
-        weighted_score_sum["project"] += associate_score.get("project", 0)
-        weighted_score_sum["project_weight"] += associate_score.get("project_weight", 0)
+        weighted_score_sum["Project"] += associate_score.get("Project", 0)
+        weighted_score_sum["Project_weight"] += associate_score.get("Project_weight", 0)
         result["Verbal Score"].append(
-            associate_score.get("verbal", 0) / associate_score.get("verbal_weight", 1)
+            float(associate_score.get("Verbal", 0) / associate_score.get("Verbal_weight", 1))
         )
-        weighted_score_sum["verbal"] += associate_score.get("verbal", 0)
-        weighted_score_sum["verbal_weight"] += associate_score.get("verbal_weight", 0)
+        weighted_score_sum["Verbal"] += associate_score.get("Verbal", 0)
+        weighted_score_sum["Verbal_weight"] += associate_score.get("Verbal_weight", 0)
         result["Email"].append(associate_email)
     # Batch running total averages
     result["Associate Name"].insert(0, "-")
     result["Email"].insert(0, "-")
-    result["Quiz Score"].insert(
-        0, weighted_score_sum["quiz"] / weighted_score_sum["quiz_weight"]
+    result["Presentation Score"].insert(
+        0, float(weighted_score_sum["Presentation"] / weighted_score_sum["Presentation_weight"])
     )
     result["Exam Score"].insert(
-        0, weighted_score_sum["exam"] / weighted_score_sum["exam_weight"]
+        0, float(weighted_score_sum["Exam"] / weighted_score_sum["Exam_weight"])
     )
     result["Project Score"].insert(
-        0, weighted_score_sum["project"] / weighted_score_sum["project_weight"]
+        0, float(weighted_score_sum["Project"] / weighted_score_sum["Project_weight"])
     )
     result["Verbal Score"].insert(
-        0, weighted_score_sum["verbal"] / weighted_score_sum["verbal_weight"]
+        0, float(weighted_score_sum["Verbal"] / weighted_score_sum["Verbal_weight"])
     )
     return result
 

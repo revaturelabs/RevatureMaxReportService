@@ -1,5 +1,6 @@
 from config.db_config import get_connection, get_local_connection
 
+
 def get_batch_by_id(batch_id, productionDB=True):
     try:
         if productionDB:
@@ -12,6 +13,7 @@ def get_batch_by_id(batch_id, productionDB=True):
         return cur.fetchone()
     finally:
         conn.close()
+
 
 def get_batches_with_same_skill(skill, start_date, productionDB=True):
     try:
@@ -26,6 +28,7 @@ def get_batches_with_same_skill(skill, start_date, productionDB=True):
     finally:
         conn.close()
 
+
 def batch_total_avg(batch_id, productionDB=True):
     try:
         if productionDB:
@@ -38,6 +41,7 @@ def batch_total_avg(batch_id, productionDB=True):
         return cur.fetchone()
     finally:
         conn.close()
+
 
 def batch_weekly_avg(batch_id, week, productionDB=True):
     try:

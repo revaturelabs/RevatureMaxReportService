@@ -16,7 +16,7 @@ def create_existing(
 def create_new(batch_id, email, assessment_type, score, week, grade_weight, cursor):
     cursor.execute(
         """INSERT INTO report_on_assessment
-        VALUES (%s, %s, %s, %s, %s, %s)""",
+        VALUES (DEFAULT, %s, %s, %s, %s, %s, %s)""",
         (batch_id, email, assessment_type, score, week, grade_weight),
     )
 
