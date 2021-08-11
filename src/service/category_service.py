@@ -131,38 +131,44 @@ def select_categorical_averages_by_email_weekly(associate_email):
     values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
-    week = 1
-    for score_by_week in sorted(values_by_category, key=lambda res: res[2]):
+    sorted_weekly = sorted(values_by_category, key=lambda res: res[2])
+    for score_by_week in sorted_weekly:
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
+        if f"Associate {category} Score" not in result:
             result[f"Associate {category} Score"] = []
-            week = 1
-        while week < score_by_week[2]:
-            week += 1
+        while len(result[f"Associate {category} Score"]) < score_by_week[2]:
             result[f"Associate {category} Score"].append(f'{0.00:.2f}')
-        result[f"Associate {category} Score"].append(f"{float(score_by_week[0]):.2f}")
+        result[f"Associate {category} Score"][score_by_week[2] - 1] = f"{float(score_by_week[0]):.2f}"
 
     return result
+
+
+def select_trainee_grades_compared_to_batch_weekly(batch_id, associate_email):
+    return {
+            **select_categorical_averages_by_email_weekly(associate_email),
+            **select_batch_averages_weekly(batch_id),
+        }
 
 
 def select_batch_averages_weekly(batch_id):
     values_by_category = category_dao.select_batch_averages_weekly(batch_id)
     if values_by_category is None or len(values_by_category) == 0:
         return {}
+        
     values_by_category = filter(None, values_by_category)
     values_by_category = sorted(values_by_category, key=lambda x: x[1])
     category = None
     result = {}
-    week = 1
+
     for score_by_week in sorted(values_by_category, key=lambda res: res[2]):
         if category is None or score_by_week[1] != category:
             category = score_by_week[1]
+        if f"Average {category} Score" not in result:
             result[f"Average {category} Score"] = []
-            week = 1
-        while week < score_by_week[2]:
-            week += 1
+        while len(result[f"Average {category} Score"]) < score_by_week[2]:
             result[f"Average {category} Score"].append(f'{0.00:.2f}')
-        result[f"Average {category} Score"].append(f"{float(score_by_week[0]):.2f}")
+        result[f"Average {category} Score"][score_by_week[2] - 1] = f"{float(score_by_week[0]):.2f}"
 
     return result
 
