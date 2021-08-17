@@ -1,0 +1,325 @@
+{
+    "id": 65,
+    "batchId": "TR-1131",
+    "name": "Mock Batch 65",
+    "startDate": "2021-04-09",
+    "endDate": "2021-06-18",
+    "skill": "Java React",
+    "location": "New York",
+    "type": "Revature",
+    "goodGrade": 70,
+    "passingGrade": 80,
+    "employeeAssignments": [
+        {
+            "role": "ROLE_LEAD_TRAINER",
+            "employee": {
+                "email": "mock1027.employee74df14df-5842-4811-a57c-be9836537a40@mock.com",
+                "firstName": "Mock 1027",
+                "lastName": "Employee 1027"
+            },
+            "deletedAt": null
+        }
+    ],
+    "associateAssignments": [
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock10.associate9e8f283a-f226-472e-8870-1eeacfc509c2@mock.com",
+                "salesforceId": "SF-2137",
+                "firstName": "Mock 10",
+                "lastName": "Associate 10",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock3.associate35270f7e-6a45-4c3b-bcbe-dcbc56b22522@mock.com",
+                "salesforceId": "SF-2130",
+                "firstName": "Mock 3",
+                "lastName": "Associate 3",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock0.associate6b59d148-0657-4254-b9c3-1f0d1446b0df@mock.com",
+                "salesforceId": "SF-2127",
+                "firstName": "Mock 0",
+                "lastName": "Associate 0",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock18.associate07cc912b-eadf-4f6f-a718-3e763f5c79c4@mock.com",
+                "salesforceId": "SF-2145",
+                "firstName": "Mock 18",
+                "lastName": "Associate 18",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock9.associate25d5c8b2-d5cc-4328-8d62-41cc7f2d490f@mock.com",
+                "salesforceId": "SF-2136",
+                "firstName": "Mock 9",
+                "lastName": "Associate 9",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock13.associate692a1271-c0cb-4f66-bf04-56b42bed4663@mock.com",
+                "salesforceId": "SF-2140",
+                "firstName": "Mock 13",
+                "lastName": "Associate 13",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock1.associatee5c1c02d-531e-404c-9a86-082107ff12bc@mock.com",
+                "salesforceId": "SF-2128",
+                "firstName": "Mock 1",
+                "lastName": "Associate 1",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock6.associatedb34b2d5-1d14-4c04-8f36-8651713dd40f@mock.com",
+                "salesforceId": "SF-2133",
+                "firstName": "Mock 6",
+                "lastName": "Associate 6",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock17.associate655088fb-9cce-4c1b-add6-bbdd252465cd@mock.com",
+                "salesforceId": "SF-2144",
+                "firstName": "Mock 17",
+                "lastName": "Associate 17",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock5.associateb1fb89f2-bab6-4719-bc1a-4f6cda2b209f@mock.com",
+                "salesforceId": "SF-2132",
+                "firstName": "Mock 5",
+                "lastName": "Associate 5",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock19.associate0a18a2a1-a6f1-4e5a-bc23-e17bcc8b4e4f@mock.com",
+                "salesforceId": "SF-2146",
+                "firstName": "Mock 19",
+                "lastName": "Associate 19",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock20.associateb3d7e79d-a624-4b23-bc66-84852106ce58@mock.com",
+                "salesforceId": "SF-2147",
+                "firstName": "Mock 20",
+                "lastName": "Associate 20",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock7.associatefb5f25f8-29b2-49c0-a463-39a734e29b61@mock.com",
+                "salesforceId": "SF-2134",
+                "firstName": "Mock 7",
+                "lastName": "Associate 7",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock16.associate5f9d07bd-9e72-4fa1-ac19-db9eec68c870@mock.com",
+                "salesforceId": "SF-2143",
+                "firstName": "Mock 16",
+                "lastName": "Associate 16",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock21.associatec6aa8da2-55b8-438c-8104-65085e7fa4d2@mock.com",
+                "salesforceId": "SF-2148",
+                "firstName": "Mock 21",
+                "lastName": "Associate 21",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock22.associate6095f4f4-eb9c-43a8-b55c-c5c72cb3f2d0@mock.com",
+                "salesforceId": "SF-2149",
+                "firstName": "Mock 22",
+                "lastName": "Associate 22",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock8.associate1622d810-2512-4175-8c37-feed6b24fedd@mock.com",
+                "salesforceId": "SF-2135",
+                "firstName": "Mock 8",
+                "lastName": "Associate 8",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock11.associate83d74d2e-a781-4a80-85c8-040f3cde0923@mock.com",
+                "salesforceId": "SF-2138",
+                "firstName": "Mock 11",
+                "lastName": "Associate 11",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock2.associate29bd7527-9c5c-4f85-94f8-d7884e850599@mock.com",
+                "salesforceId": "SF-2129",
+                "firstName": "Mock 2",
+                "lastName": "Associate 2",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock4.associate087aed1a-04aa-4211-9557-8528f6167512@mock.com",
+                "salesforceId": "SF-2131",
+                "firstName": "Mock 4",
+                "lastName": "Associate 4",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock15.associate12572dc5-795a-4386-a4a1-51651013416a@mock.com",
+                "salesforceId": "SF-2142",
+                "firstName": "Mock 15",
+                "lastName": "Associate 15",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock12.associate7268451a-bd73-4bf9-a938-1294d5e40ab9@mock.com",
+                "salesforceId": "SF-2139",
+                "firstName": "Mock 12",
+                "lastName": "Associate 12",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        },
+        {
+            "trainingStatus": "Training",
+            "associate": {
+                "email": "mock14.associate00f8693c-bb49-4072-b021-2ef2b6f6d626@mock.com",
+                "salesforceId": "SF-2141",
+                "firstName": "Mock 14",
+                "lastName": "Associate 14",
+                "flag": null
+            },
+            "startDate": "2021-06-18",
+            "endDate": "2021-04-09",
+            "active": true
+        }
+    ],
+    "currentWeek": 11
+}
